@@ -1,0 +1,86 @@
+# Desafio - Criar um sistema bancário com Python
+# Primeira versão - 3 operações (Depósito, saque e extrato)
+# Variável depósito - só deve ter valores positivos!
+# Saque - máximo de 3 saques diários com limite máximo de 500 reais por saque
+# No caso de não haver saldo para o saque, deve-se imprimir uma mensagem informando
+
+
+# Menu
+menu="""
+
+[d] Depositar
+[s] Sacar
+[e] Extrato
+[q] Sair
+
+=>"""
+
+saldo=0
+limite=500
+extrato="" # é uma string
+numero_saques=0
+LIMITE_SAQUES=3 # está em maiúsculo, pois indica que não se deve mexer nesta variável
+
+# Loop infinito
+while True:
+
+    opcao=input(menu)
+
+    print("")
+
+    if opcao == "d":
+
+        
+        deposito=float((input("Depósito - Por favor, digite o valor que deseja depositar: ")))
+        print("")
+
+        if deposito>0:
+            saldo=saldo+deposito # adiciona o deposito ao valor do saldo da conta
+            extrato+=f"Depósito: R$ {deposito:.2f}\n" # adiciona à variável string extrato o valor do depósito
+
+        else:
+            print("Valor inválido. Por favor, digite somente números positivos.")
+
+    
+    elif opcao == "s":
+        print("")
+        saque=float(input("Saque - Por favor, digite o valor que deseja sacar:"))
+        print("")
+
+        if saque>0:
+
+            if numero_saques<=LIMITE_SAQUES:
+                
+                if (saldo - saque)>=0: 
+                    
+                    if saque<=500:
+                        print("Saque realizado com sucesso!")
+                        saldo-=saque
+                        extrato += f"Saque: R$ {saque: .2f}\n"
+                        numero_saques+=1
+
+                    else:
+                        print("Valor excede o limite de 500 reais por saque, favor digitar um valor menor que 500.")
+
+                else:
+                    print("Saldo insuficiente para o valor do saque desejado, favor digitar um valor que não exceda o saldo!")
+
+            else:
+                print("Número de saques excedeu o valor máximo de 3 saques permitidos. Favor retornar amanhã ou solicitar ao gerente o aumento do limite do saque.") 
+        
+        else:
+            print("Valor do saque inválido. Por favor, digite somente números positivos.")
+
+    elif opcao == "e":
+        print("\n========== Extrato ==========")
+        print("Não foram realizadas movimentações." if not extrato else extrato) #if ternário
+        print(f"\nSaldo: R$ {saldo:.2f}")
+        print("=============================")
+
+    elif opcao == "q":
+        break
+
+    else:
+        print("Operação inválida. Por favor, selecione novamente a operação desejada.")
+
+
