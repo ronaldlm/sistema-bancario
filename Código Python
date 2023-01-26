@@ -18,7 +18,7 @@ menu="""
 saldo=0
 limite=500
 extrato="" # é uma string
-numero_saques=0
+numero_saques=1
 LIMITE_SAQUES=3 # está em maiúsculo, pois indica que não se deve mexer nesta variável
 
 # Loop infinito
@@ -60,7 +60,7 @@ while True:
                         numero_saques+=1
 
                     else:
-                        print("Valor excede o limite de 500 reais por saque, favor digitar um valor menor que 500.")
+                        print("Valor excede o limite de 500 reais por saque, favor digitar um valor menor ou igual a 500.")
 
                 else:
                     print("Saldo insuficiente para o valor do saque desejado, favor digitar um valor que não exceda o saldo!")
@@ -82,5 +82,3 @@ while True:
 
     else:
         print("Operação inválida. Por favor, selecione novamente a operação desejada.")
-
-
